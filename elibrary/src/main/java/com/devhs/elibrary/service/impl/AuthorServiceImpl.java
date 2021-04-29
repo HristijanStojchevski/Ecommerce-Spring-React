@@ -29,8 +29,8 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List<Author> findAllByName(String name){
-        return authorRepository.findAllByNameLike(name);
+    public List<Author> findAllByName(String name, String surname){
+        return authorRepository.searchAuthors(name, surname);
     }
     @Override
     public Optional<Author> findByName(String name) {
@@ -45,9 +45,16 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Optional<Author> save(AuthorDto authorDto) {
-        Country country = countryRepository.findById(authorDto.getCountryId()).orElseThrow(() -> new CountryNotFoundException(authorDto.getCountryId()));
-        Author author = new Author(authorDto.getName(), authorDto.getSurname(), country);
-        return Optional.of(authorRepository.save(author));
+//        try {
+            Country country = countryRepository.findById(authorDto.getCountryId()).orElseThrow(() -> new CountryNotFoundException(authorDto.getCountryId()));
+            Author author = new Author(authorDto.getName(), authorDto.getSurname(), country);
+            return Optional.of(authorRepository.save(author));
+//        }
+//        catch (CountryNotFoundException ex){
+//            ex.printStackTrace();
+//            System.err.println(ex.getMessage());
+//            return;
+//        }
     }
 
     @Override

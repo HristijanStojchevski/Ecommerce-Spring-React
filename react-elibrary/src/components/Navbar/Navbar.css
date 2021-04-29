@@ -1,0 +1,38 @@
+
+.MuiPaper-root{
+    width:100%;
+    z-index: 2;
+    top: 0;
+}
+
+.tab-align{
+    margin: '0.4em 0 0 0 !important';
+}
+
+.nav-logo
+{
+    padding-top: '0.2em';
+    padding-left: '0.6em';
+    width: 100%;
+}
+
+.MuiTab-textColorPrimary
+{
+    font-size: 2.4vw !important;
+    text-decoration: none;
+    color: #0089ff !important;
+}
+
+.Mui-selected
+{
+    font-weight: bolder !important;
+    color: white !important;
+    border-bottom: 2px solid white !important;
+}
+
+@media only screen and (max-width: 800px){
+    .MuiTab-textColorPrimary
+    {
+        font-size: 4.4vw !important;
+    }
+}

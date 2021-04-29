@@ -22,6 +22,11 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
+    public Optional<Country> findById(Long id) {
+        return this.countryRepository.findById(id);
+    }
+
+    @Override
     public Optional<Country> save(String name, String continent) {
         Country country = new Country(name, continent);
         return Optional.of(countryRepository.save(country));

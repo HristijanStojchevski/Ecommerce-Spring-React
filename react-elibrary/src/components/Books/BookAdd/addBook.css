@@ -1,0 +1,28 @@
+.validator
+{
+    font-weight: 500;
+    display: block;
+    padding: 0;
+    margin-bottom: 10px;
+    color: red;
+    letter-spacing: 0px;
+}
+.form-field
+{
+    font-size: 16px;
+    text-align: center;
+    margin: auto;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #787878;
+    padding: 10px;
+    background-color: none;
+    width: 50%;
+    margin-bottom: 10px;
+    background-color: #d3e0e6 !important;
+}
+
+.form-field:hover
+{
+    border-bottom: 1.5px solid;
+}

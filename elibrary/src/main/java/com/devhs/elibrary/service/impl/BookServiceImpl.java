@@ -10,6 +10,8 @@ import com.devhs.elibrary.repository.AuthorRepository;
 import com.devhs.elibrary.repository.BookRepository;
 import com.devhs.elibrary.repository.CountryRepository;
 import com.devhs.elibrary.service.BookService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,7 +59,7 @@ public class BookServiceImpl implements BookService {
         Author author = authorRepository.findById(bookDto.getAuthorId()).orElseThrow(() -> new AuthorNotFoundException(bookDto.getAuthorId()));
         BookCategory category = BookCategory.valueOf(bookDto.getCategory());
         book.setAuthor(author);
-        book.setAvailableCopies(book.getAvailableCopies());
+        book.setAvailableCopies(bookDto.getAvailableCopies());
         book.setCategory(category);
         book.setName(bookDto.getName());
         return Optional.of(this.bookRepository.save(book));
@@ -75,6 +77,19 @@ public class BookServiceImpl implements BookService {
         if (availableCopies > 0){
             book.setAvailableCopies(availableCopies - 1);
         }
+        return Optional.of(this.bookRepository.save(book));
+    }
+
+    @Override
+    public Page<Book> findAll(Pageable pageable) {
+        return this.bookRepository.findAll(pageable);
+    }
+
+    @Override
+    public Optional<Book> addCopy(Long id) {
+        Book book = this.bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
+        int availableCopies = book.getAvailableCopies();
+        book.setAvailableCopies(availableCopies + 1);
         return Optional.of(this.bookRepository.save(book));
     }
 }

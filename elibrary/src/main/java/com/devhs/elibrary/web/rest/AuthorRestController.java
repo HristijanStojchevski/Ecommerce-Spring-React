@@ -20,11 +20,13 @@ public class AuthorRestController {
         this.authorService = authorService;
     }
     @GetMapping
-    public List<Author> getAll(@RequestParam String name){
-        if( name == null || name.isEmpty()){
-            return this.authorService.getAll();
-        }
-        else return this.authorService.findAllByName(name);
+    public List<Author> getAll(@RequestParam(required = false) String name, @RequestParam(required = false) String surname){
+        if(name != null || surname != null) return this.authorService.findAllByName(name, surname);
+        return this.authorService.getAll();
+    }
+    @GetMapping("/findAll")
+    public List<Author> findAll(@RequestParam(required = false) String name, @RequestParam(required = false) String surname){
+        return this.authorService.findAllByName(name,surname);
     }
     @GetMapping("/find/{name}")
     public ResponseEntity<Author> findByName(@PathVariable String name){

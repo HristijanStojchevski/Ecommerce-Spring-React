@@ -2,10 +2,12 @@ package com.devhs.elibrary.model;
 
 import com.devhs.elibrary.model.enumerations.BookCategory;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Book {
     @Id

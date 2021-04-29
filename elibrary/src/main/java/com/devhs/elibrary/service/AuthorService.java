@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface AuthorService {
     List<Author> getAll();
 
-    List<Author> findAllByName(String name);
+    List<Author> findAllByName(String name, String surname);
 
     Optional<Author> findByName(String name);
 
